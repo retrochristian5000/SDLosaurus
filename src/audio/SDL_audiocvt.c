@@ -1231,7 +1231,16 @@ static bool GetAudioStreamDataInternal(SDL_AudioStream *stream, void *buf, int o
 
         // Ensure we have enough scratch space for any conversions
         if ((src_format != dst_format) || (src_channels != dst_channels) || (gain != 1.0f)) {
-            work_buffer = EnsureAudioStreamWorkBufferSize(stream, output_frames * max_frame_size);
+            if (max_frame_size <= 0) {
+                return SDL_SetError("Invalid maximum frame size");
+            }
+
+            const size_t requested_work_buffer_size = (size_t)output_frames * (size_t)max_frame_size;
+            if (requested_work_buffer_size / (size_t)max_frame_size != (size_t)output_frames) {
+                return SDL_SetError("Requested audio work buffer size overflow");
+            }
+
+            work_buffer = EnsureAudioStreamWorkBufferSize(stream, requested_work_buffer_size);
 
             if (!work_buffer) {
                 return false;

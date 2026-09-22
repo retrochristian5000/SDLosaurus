@@ -538,7 +538,7 @@ const Uint8 *SDL_ReadFromAudioQueue(SDL_AudioQueue *queue,
     const int *src_map = track->chmap;
 
     size_t src_frame_size = SDL_AUDIO_BYTESIZE(src_format) * src_channels;
-    size_t dst_frame_size = SDL_AUDIO_BYTESIZE(dst_format) * dst_channels;
+    size_t dst_frame_size = ((size_t) SDL_AUDIO_BYTESIZE(dst_format)) * dst_channels;
 
     size_t src_past_bytes = past_frames * src_frame_size;
     size_t src_present_bytes = present_frames * src_frame_size;

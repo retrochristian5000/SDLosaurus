@@ -186,7 +186,7 @@ bool SDL_SW_UpdateYUVTexture(SDL_SW_YUVTexture *swdata, const SDL_Rect *rect,
             src = (Uint8 *)pixels;
             dst = swdata->pixels;
             dst += rect->y * swdata->pitches[0] + rect->x *bpp;
-            length = rect->w * bpp;
+            length = (size_t)rect->w * (size_t)bpp;
             for (row = 0; row < rect->h; ++row) {
                 SDL_memcpy(dst, src, length);
                 src += pitch;

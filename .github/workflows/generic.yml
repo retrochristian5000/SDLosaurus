@@ -9,6 +9,9 @@ on:
         type: string
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: ${{ matrix.platform.name }}

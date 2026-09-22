@@ -250,7 +250,7 @@ static void draw(SDL_Renderer *renderer, const float (*edges)[6], const Player p
                 SDL_SetRenderDrawColor(renderer, target->color[0], target->color[1], target->color[2], 255);
                 for (k = 0; k < 2; k++) {
                     double rx = target->pos[0] - player->pos[0];
-                    double ry = target->pos[1] - player->pos[1] + (target->radius - target->height) * (float)k;
+                    double ry = target->pos[1] - player->pos[1] + (target->radius - target->height) * (double)k;
                     double rz = target->pos[2] - player->pos[2];
                     double dx = mat[0] * rx + mat[1] * ry + mat[2] * rz;
                     double dy = mat[3] * rx + mat[4] * ry + mat[5] * rz;

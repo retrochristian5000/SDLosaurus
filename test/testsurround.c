@@ -175,7 +175,7 @@ static void SDLCALL fill_buffer(void *userdata, SDL_AudioStream *stream, int len
             amplitude = MAX_AMPLITUDE;
         }
 
-        buffer[i] = (Sint16)(SDL_sin(6.283185f * sine_freq * time) * amplitude);
+        buffer[i] = (Sint16)(SDL_sin(6.283185 * sine_freq * time) * amplitude);
 
         /* Reset our state for next callback if this channel test is finished */
         if (total_samples == CHANNEL_TEST_TIME_SEC * SAMPLE_RATE_HZ) {

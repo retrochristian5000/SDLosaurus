@@ -1446,7 +1446,7 @@ static int SDLCALL audio_formatChange(void *arg)
         const double error = SDL_fabs(target - output);
         max_error = SDL_max(max_error, error);
         sum_squared_error += error * error;
-        sum_squared_value += target * target;
+        sum_squared_value += (double)target * (double)target;
     }
 
     signal_to_noise = 10 * SDL_log10(sum_squared_value / sum_squared_error); /* decibel */

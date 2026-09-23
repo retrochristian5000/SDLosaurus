@@ -1319,7 +1319,7 @@ static bool SDL_ConvertPixels_YUV_to_YUV_Copy(int width, int height, SDL_PixelFo
 
     if (IsPlanar1x1Format(format)) {
         // YUV planes
-        const size_t length = width * SDL_BYTESPERPIXEL(format);
+        const size_t length = (size_t)width * SDL_BYTESPERPIXEL(format);
         for (i = height * 3; i--;) {
             SDL_memcpy(dst, src, length);
             src = (const Uint8 *)src + src_pitch;

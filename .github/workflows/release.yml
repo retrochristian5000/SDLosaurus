@@ -635,6 +635,8 @@ jobs:
   android-verify:
     needs: [android, src]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: 'Set up Python'
         uses: actions/setup-python@v6

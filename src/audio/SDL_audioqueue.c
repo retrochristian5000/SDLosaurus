@@ -632,7 +632,16 @@ bool SDL_ResetAudioQueueHistory(SDL_AudioQueue *queue, int num_frames)
         return false;
     }
 
-    size_t length = num_frames * SDL_AUDIO_FRAMESIZE(track->spec);
+    if (num_frames < 0) {
+        return false;
+    }
+
+    const size_t framesize = (size_t)SDL_AUDIO_FRAMESIZE(track->spec);
+    if ((framesize != 0) && ((size_t)num_frames > (SDL_SIZE_MAX / framesize))) {
+        return false;
+    }
+
+    size_t length = ((size_t)num_frames) * framesize;
     Uint8 *history_buffer = queue->history_buffer;
 
     if (queue->history_capacity < length) {

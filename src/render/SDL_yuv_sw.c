@@ -236,7 +236,7 @@ bool SDL_SW_UpdateYUVTexture(SDL_SW_YUVTexture *swdata, const SDL_Rect *rect,
     {
         if (rect->x == 0 && rect->y == 0 && rect->w == swdata->w && rect->h == swdata->h) {
             SDL_memcpy(swdata->pixels, pixels,
-                       (size_t)(swdata->h * swdata->w) + 2 * ((swdata->h + 1) / 2) * ((swdata->w + 1) / 2));
+                       ((size_t)swdata->h * (size_t)swdata->w) + (size_t)2 * (size_t)((swdata->h + 1) / 2) * (size_t)((swdata->w + 1) / 2));
         } else {
 
             Uint8 *src, *dst;

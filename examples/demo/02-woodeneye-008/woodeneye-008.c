@@ -255,7 +255,7 @@ static void draw(SDL_Renderer *renderer, const float (*edges)[6], const Player p
                     double dx = mat[0] * rx + mat[1] * ry + mat[2] * rz;
                     double dy = mat[3] * rx + mat[4] * ry + mat[5] * rz;
                     double dz = mat[6] * rx + mat[7] * ry + mat[8] * rz;
-                    double r_eff = target->radius * cam_origin / dz;
+                    double r_eff = ((double)target->radius) * ((double)cam_origin) / dz;
                     if (!(dz < 0)) continue;
                     drawCircle(renderer, (float)(r_eff), (float)(hor_origin - cam_origin*dx/dz), (float)(ver_origin + cam_origin*dy/dz));
                 }

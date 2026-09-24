@@ -476,9 +476,9 @@ static bool create_textures(SDL_Renderer *renderer, SDL_Surface *original, SDL_P
         const Uint8 *src_plane2 = src_plane1 + rows * pitch;
         const int Ypitch = pitch + 37;
         const int UVpitch = Ypitch;
-        Uint8 *plane0 = (Uint8 *)SDL_calloc(1, rows * Ypitch);
-        Uint8 *plane1 = (Uint8 *)SDL_calloc(1, rows * UVpitch);
-        Uint8 *plane2 = (Uint8 *)SDL_calloc(1, rows * UVpitch);
+        Uint8 *plane0 = (Uint8 *)SDL_calloc(1, (size_t)rows * (size_t)Ypitch);
+        Uint8 *plane1 = (Uint8 *)SDL_calloc(1, (size_t)rows * (size_t)UVpitch);
+        Uint8 *plane2 = (Uint8 *)SDL_calloc(1, (size_t)rows * (size_t)UVpitch);
         int row;
         const Uint8 *src;
         Uint8 *dst;

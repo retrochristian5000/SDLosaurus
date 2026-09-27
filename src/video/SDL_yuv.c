@@ -109,7 +109,11 @@ bool SDL_CalculateYUVSize(SDL_PixelFormat format, int w, int h, size_t *size, si
     case SDL_PIXELFORMAT_P416:
 
         if (pitch) {
-            *pitch = w * SDL_BYTESPERPIXEL(format);
+            size_t s1;
+            if (!SDL_size_mul_check_overflow(w, SDL_BYTESPERPIXEL(format), &s1)) {
+                return SDL_SetError("width * bpp would overflow");
+            }
+            *pitch = s1;
         }
 
         if (size) {
